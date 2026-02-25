@@ -12,31 +12,29 @@ This project combines OCR, document processing, and Groq-powered large language 
 
 ⭐ **Core Objectives**
 
-• Simplify complex medical terminology
-• Extract text from PDF, Image, and TXT reports
-• Provide patient-friendly explanations
-• Improve medical text accessibility
-• Enable AI-assisted healthcare understanding
+• Simplify complex medical terminology     
+• Extract text from PDF, Image, and TXT reports     
+• Provide patient-friendly explanations     
+• Improve medical text accessibility     
+• Enable AI-assisted healthcare understanding     
 • Build a scalable AI medical assistant system
 
 ⭐ **Key Features**
-```
-✅ Multi-Format File Upload (PDF / Image / TXT)
-✅ OCR-Based Text Extraction (EasyOCR)
-✅ Groq LLM Powered Medical Simplification
-✅ Clinical Text Analysis
-✅ Clean Flask-Based Web Interface
-✅ Secure API Key Handling (.env)
+
+✅ Multi-Format File Upload (PDF / Image / TXT)  
+✅ OCR-Based Text Extraction (EasyOCR)  
+✅ Groq LLM Powered Medical Simplification         
+✅ Clinical Text Analysis  
+✅ Clean Flask-Based Web Interface  
+✅ Secure API Key Handling (.env)  
 ✅ Cloud Deployment Ready
 
----
 
 # 2️⃣ Demos
 
 Groq Medical Simplifier works like an intelligent healthcare assistant that reads reports and explains them in simple language.
 
 ### 🔍 Workflow Demonstration
-```
 
 User uploads medical report
 ↓
@@ -52,8 +50,6 @@ Simplified explanation generated
 ↓
 Patient-friendly output displayed in browser
 
----
-
 # 3️⃣ Project Structure
 
 ```
@@ -67,9 +63,9 @@ GROQ_PRO/
 │
 ├── uploads/
 │
-├── app.py                # Main Flask application
-├── extract_text.py       # OCR & file text extraction
-├── groq_utils.py         # Groq API interaction
+├── app.py                
+├── extract_text.py      
+├── groq_utils.py        
 ├── requirements.txt
 └── .env
 ```
@@ -116,13 +112,6 @@ GROQ_API_KEY=your_key_here
 Start command:
 python app.py
 
-### 2️⃣ Railway Deployment
-
-Create new project
-Upload repository
-Add .env variables
-Deploy automatically
-
 ---
 
 
@@ -142,12 +131,12 @@ pip install pymupdf
 
 # 8️⃣ Tech Stack
 
-• Python 3.9+
-• Flask
-• Groq LLM API
-• EasyOCR
-• HTML / CSS
-• dotenv
+• Python 3.9+     
+• Flask     
+• Groq LLM API     
+• EasyOCR     
+• HTML / CSS     
+• dotenv     
 • pymupdf
 
 ---
