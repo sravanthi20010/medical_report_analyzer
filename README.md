@@ -20,7 +20,7 @@ This project combines OCR, document processing, and Groq-powered large language 
 • Build a scalable AI medical assistant system
 
 ⭐ **Key Features**
-
+```bash id="q9c7dy"
 ✅ Multi-Format File Upload (PDF / Image / TXT)
 ✅ OCR-Based Text Extraction (EasyOCR)
 ✅ Groq LLM Powered Medical Simplification
@@ -36,6 +36,7 @@ This project combines OCR, document processing, and Groq-powered large language 
 Groq Medical Simplifier works like an intelligent healthcare assistant that reads reports and explains them in simple language.
 
 ### 🔍 Workflow Demonstration
+```bash id="q9c7dy"
 
 User uploads medical report
 ↓
