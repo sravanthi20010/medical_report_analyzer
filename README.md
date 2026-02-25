@@ -20,7 +20,7 @@ This project combines OCR, document processing, and Groq-powered large language 
 • Build a scalable AI medical assistant system
 
 ⭐ **Key Features**
-```bash id="q9c7dy"
+```
 ✅ Multi-Format File Upload (PDF / Image / TXT)
 ✅ OCR-Based Text Extraction (EasyOCR)
 ✅ Groq LLM Powered Medical Simplification
@@ -36,7 +36,7 @@ This project combines OCR, document processing, and Groq-powered large language 
 Groq Medical Simplifier works like an intelligent healthcare assistant that reads reports and explains them in simple language.
 
 ### 🔍 Workflow Demonstration
-```bash id="q9c7dy"
+```
 
 User uploads medical report
 ↓
@@ -56,7 +56,7 @@ Patient-friendly output displayed in browser
 
 # 3️⃣ Project Structure
 
-```id="3aj3nf"
+```
 GROQ_PRO/
 │
 ├── static/
@@ -78,7 +78,7 @@ GROQ_PRO/
 
 # 4️⃣ Run Locally
 
-```bash id="h6h8zq"
+```
 
 git clone https://github.com/sravanthi20010/medical_report_analyzer.git
 cd medical_report_analyzer
@@ -89,7 +89,7 @@ python app.py
 ```
 
 
-```id="o0qf8x"
+```
 http://127.0.0.1:5000
 ```
 
@@ -99,7 +99,7 @@ http://127.0.0.1:5000
 
 Create a `.env` file in project root:
 
-```env id="e3x6r1"
+```env 
 GROQ_API_KEY=your_api_key_here
 ```
 
@@ -128,7 +128,7 @@ Deploy automatically
 
 # 7️⃣ Package Installation Commands
 
-```bash id="q9c7dy"
+```bash 
 pip install flask
 pip install groq
 pip install python-dotenv
