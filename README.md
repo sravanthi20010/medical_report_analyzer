@@ -77,7 +77,7 @@ GROQ_PRO/
 
 # 4️⃣ Run Locally
 
-```bash id="h6h8zq"
+```
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
 
@@ -87,7 +87,7 @@ python app.py
 ```
 
 
-```id="o0qf8x"
+```
 http://127.0.0.1:5000
 ```
 
