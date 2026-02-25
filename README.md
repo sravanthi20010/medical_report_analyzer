@@ -1,71 +1,76 @@
 # 🧾 Groq-Based Medical Report Simplification & Clinical Text Analysis
 
-Groq-Based Medical Report Simplification & Clinical Text Analysis is an AI-powered healthcare NLP web application that converts complex medical reports into simplified, patient-friendly explanations using Groq LLM inference and clinical text processing techniques.
+Groq-Based Medical Report Simplification is an AI-powered web application designed to extract, analyze, and simplify complex clinical text from medical reports using Groq LLM.
 
-The system helps patients understand diagnostic reports while supporting clinicians with structured summaries and extracted insights.
+The system converts difficult medical terminology into patient-friendly explanations, improving healthcare accessibility and understanding.
 
 ---
 
 # 1️⃣ Overview
 
-This project integrates Groq LLM processing, document text extraction, and medical simplification pipelines to deliver interpretable healthcare explanations.
+This project combines OCR, document processing, and Groq-powered large language models to deliver simplified, explainable medical insights.
 
 ⭐ **Core Objectives**
 
-• Simplify complex clinical reports for patients
-• Extract meaningful medical information from documents
-• Improve readability of diagnostic language
-• Support healthcare decision-making with AI insights
-• Enable scalable medical NLP systems
+• Simplify complex medical terminology
+• Extract text from PDF, Image, and TXT reports
+• Provide patient-friendly explanations
+• Improve medical text accessibility
+• Enable AI-assisted healthcare understanding
+• Build a scalable AI medical assistant system
 
 ⭐ **Key Features**
 
-✅ Groq LLM-based Medical Text Simplification
-✅ Automatic Clinical Text Extraction from Reports
-✅ Structured Medical Insight Generation
-✅ Patient-Friendly Explanation Output
-✅ Upload & Analyze Medical Documents
-✅ Interactive Web Interface
-✅ Deployment Ready
+✅ Multi-Format File Upload (PDF / Image / TXT)
+✅ OCR-Based Text Extraction (EasyOCR)
+✅ Groq LLM Powered Medical Simplification
+✅ Clinical Text Analysis
+✅ Clean Flask-Based Web Interface
+✅ Secure API Key Handling (.env)
+✅ Cloud Deployment Ready
 
 ---
 
 # 2️⃣ Demos
 
-The system acts as an intelligent clinical assistant that interprets uploaded reports and generates simplified explanations.
+Groq Medical Simplifier works like an intelligent healthcare assistant that reads reports and explains them in simple language.
 
 ### 🔍 Workflow Demonstration
 
-User uploads medical report (PDF/Image/Text)
-System extracts text from document
-Text is cleaned and structured
-Groq LLM generates simplified explanation
-Insights displayed on dashboard
-
-(Add screenshots or demo video here)
+User uploads medical report
+↓
+System detects file type
+↓
+Text extraction (OCR / PDF Parser / TXT Reader)
+↓
+Extracted content sent to Groq API
+↓
+LLM analyzes medical terminology
+↓
+Simplified explanation generated
+↓
+Patient-friendly output displayed in browser
 
 ---
 
 # 3️⃣ Project Structure
 
-```id="3aj3nf"
+
 GROQ_PRO/
 │
 ├── static/
-│   └── style.css               # Frontend styles
+│   └── style.css
 │
 ├── templates/
-│   └── index.html              # Upload & result UI
+│   └── index.html
 │
-├── uploads/                    # Uploaded reports
-├── .env                        # API keys & secrets
+├── uploads/
 │
-├── app.py                      # Main Flask application
-├── extract_text.py             # Document text extraction logic
-├── groq_utils.py               # Groq API interaction module
-│
+├── app.py                # Main Flask application
+├── extract_text.py       # OCR & file text extraction
+├── groq_utils.py         # Groq API interaction
 ├── requirements.txt
-└── README.md
+└── .env
 ```
 
 ---
@@ -75,11 +80,12 @@ GROQ_PRO/
 ```bash id="h6h8zq"
 git clone https://github.com/your-username/your-repo-name.git
 cd your-repo-name
+
 pip install -r requirements.txt
+
 python app.py
 ```
 
-Open in browser:
 
 ```id="o0qf8x"
 http://127.0.0.1:5000
@@ -99,26 +105,24 @@ GROQ_API_KEY=your_api_key_here
 
 # 6️⃣ Deployment Guide
 
-### 🔹 Render / Railway / PythonAnywhere
+### 1️⃣ Render Deployment
 
-• Push project to GitHub
-• Add environment variable `GROQ_API_KEY`
-• Ensure requirements.txt is present
-• Deploy Flask app
-
----
-
-### 🔹 Hugging Face Spaces (Docker or Python)
-
-Upload project files
-Add secrets in Space settings
-Set entry file as:
-
-```bash id="rjzv3u"
+Create new Web Service
+Connect GitHub repo
+Add environment variable:
+GROQ_API_KEY=your_key_here
+Start command:
 python app.py
-```
+
+### 2️⃣ Railway Deployment
+
+Create new project
+Upload repository
+Add .env variables
+Deploy automatically
 
 ---
+
 
 # 7️⃣ Package Installation Commands
 
@@ -126,12 +130,10 @@ python app.py
 pip install flask
 pip install groq
 pip install python-dotenv
-pip install pandas
-pip install numpy
+pip install easyocr
 pip install pillow
-pip install pytesseract
-pip install pdf2image
-pip install PyPDF2
+pip install pymupdf
+
 ```
 
 ---
@@ -139,22 +141,20 @@ pip install PyPDF2
 # 8️⃣ Tech Stack
 
 • Python 3.9+
+• Flask
 • Groq LLM API
-• Flask Web Framework
-• NLP & Document Processing
-• HTML / CSS / JavaScript
+• EasyOCR
+• HTML / CSS
+• dotenv
+• pymupdf
 
 ---
 
 # 9️⃣ Conclusion
 
-Groq-Based Medical Report Simplification & Clinical Text Analysis demonstrates how modern LLM-powered NLP systems can improve healthcare accessibility by transforming complex medical reports into understandable explanations.
+Groq-Based Medical Report Simplification demonstrates how large language models can enhance healthcare accessibility by translating complex medical data into understandable language.
 
-This project highlights the potential of AI-driven clinical text processing in improving patient awareness and medical communication.
+By combining OCR, structured extraction, and Groq-powered AI analysis, the system acts as a digital healthcare assistant that improves clarity, reduces confusion, and enhances patient awareness.
 
 ---
 
-# 👨‍💻 Author
-
-**Vinay**
-GitHub: https://github.com/your-username
