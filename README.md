@@ -80,8 +80,8 @@ GROQ_PRO/
 
 ```bash id="h6h8zq"
 
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/sravanthi20010/medical_report_analyzer.git
+cd medical_report_analyzer
 
 pip install -r requirements.txt
 
