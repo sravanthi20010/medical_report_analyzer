@@ -1,0 +1,6 @@
+flask
+groq
+python-dotenv
+easyocr
+pymupdf
+pillow

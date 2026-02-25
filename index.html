@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Groq MedAssist</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>🧠 Groq MedAssist</h2>
+    <p>AI-powered Medical Intelligence</p>
+
+    <form method="POST" enctype="multipart/form-data" onsubmit="showLoader()">
+      <input type="file" name="file" required>
+      <button type="submit" id="analyzeBtn">Analyze Report</button>
+
+      <div id="loader" class="loader hidden">
+        <div class="spinner"></div>
+        <span>Analyzing medical report...</span>
+      </div>
+    </form>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    {% if data %}
+    <div class="tabs">
+      <button onclick="show('patient')">Patient View</button>
+      <button onclick="show('doctor')">Doctor View</button>
+      <button onclick="show('diseases')">Diseases</button>
+      <button onclick="show('symptoms')">Symptoms</button>
+      <button onclick="show('medicines')">Medicines</button>
+      <button onclick="show('tests')">Tests</button>
+    </div>
+
+    <div class="box">
+
+      <div id="patient" class="section">
+        <h3>Patient Explanation</h3>
+        <p>{{ data.patient }}</p>
+      </div>
+
+      <div id="doctor" class="section hidden">
+        <h3>Doctor Explanation</h3>
+        <p>{{ data.doctor }}</p>
+      </div>
+
+      <div id="diseases" class="section hidden">
+        <h3>Diseases</h3>
+        <p>{{ data.entities.Diseases }}</p>
+      </div>
+
+      <div id="symptoms" class="section hidden">
+        <h3>Symptoms</h3>
+        <p>{{ data.entities.Symptoms }}</p>
+      </div>
+
+      <div id="medicines" class="section hidden">
+        <h3>Medicines</h3>
+        <p>{{ data.entities.Medicines }}</p>
+      </div>
+
+      <div id="tests" class="section hidden">
+        <h3>Tests</h3>
+        <p>{{ data.entities.Tests }}</p>
+      </div>
+
+    </div>
+    {% else %}
+      <p class="empty">Upload a medical report to view analysis.</p>
+    {% endif %}
+
+  </div>
+
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section')
+    .forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+}
+
+function showLoader() {
+  document.getElementById("loader").classList.remove("hidden");
+  document.getElementById("analyzeBtn").disabled = true;
+  document.getElementById("analyzeBtn").innerText = "Processing...";
+}
+</script>
+
+</body>
+</html>
