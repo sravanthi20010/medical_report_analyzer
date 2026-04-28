@@ -1,73 +1,101 @@
 # 🧾 Groq-Based Medical Report Simplification & Clinical Text Analysis
 
-Groq-Based Medical Report Simplification is an AI-powered web application designed to extract, analyze, and simplify complex clinical text from medical reports using Groq LLM.
-
-The system converts difficult medical terminology into patient-friendly explanations, improving healthcare accessibility and understanding.
+AI-powered medical document analysis system designed to simplify how users understand their health reports. Instead of manually reading complex medical data, the system automates extraction, analysis, and explanation in a user-friendly way.
 
 ---
 
 # 1️⃣ Overview
 
-This project combines OCR, document processing, and Groq-powered large language models to deliver simplified, explainable medical insights.
+This project is an AI-powered Medical Document Analysis System that uses OCR, document processing, and local Large Language Models powered by Ollama to extract, analyze, and simplify medical reports.
+It enables users to upload medical documents, automatically extract key information, and receive clear, patient-friendly explanations along with risk predictions, chatbot support, translation, and voice output.
 
 ⭐ **Core Objectives**
 
-• Simplify complex medical terminology     
-• Extract text from PDF, Image, and TXT reports     
-• Provide patient-friendly explanations     
-• Improve medical text accessibility     
-• Enable AI-assisted healthcare understanding     
-• Build a scalable AI medical assistant system
+• Simplify complex medical report data into easy explanations  
+• Extract and process text from medical images/documents  
+• Provide AI-generated insights using local LLM (Ollama)  
+• Predict potential health risks based on extracted values  
+• Enable interactive communication through a chatbot  
+• Support multi-language output and voice assistance  
+• Ensure privacy by running AI models locally  
+• Build a scalable and intelligent healthcare assistant system  
 
 ⭐ **Key Features**
 
-✅ Multi-Format File Upload (PDF / Image / TXT)  
-✅ OCR-Based Text Extraction (EasyOCR)  
-✅ Groq LLM Powered Medical Simplification         
-✅ Clinical Text Analysis  
+✅ Medical Report Upload (Image-Based Input)  
+✅ OCR-Based Text Extraction (Report Processing Module)  
+✅ AI-Powered Analysis using Ollama (Local LLM)  
+✅ Health Risk Prediction Module  
+✅ Chatbot Integration for user queries  
+✅ Language Translation Support  
+✅ Text-to-Speech (Voice Output)  
 ✅ Clean Flask-Based Web Interface  
-✅ Secure API Key Handling (.env)  
-✅ Cloud Deployment Ready
+✅ Modular Architecture (chatbot, extractor, risk, translate, tts)  
+✅ Secure Configuration using (.env)  
+✅ Privacy-Focused (Local Processing with Ollama)  
+✅ Ready for Deployment  
 
 
 # 2️⃣ Demos
 
-Groq Medical Simplifier works like an intelligent healthcare assistant that reads reports and explains them in simple language.
+AI-powered medical document analysis system works like an intelligent healthcare assistant that reads reports and explains them in simple language.
 
 ### 🔍 Workflow Demonstration
 
-User uploads medical report
-↓
-System detects file type
-↓
-Text extraction (OCR / PDF Parser / TXT Reader)
-↓
-Extracted content sent to Groq API
-↓
-LLM analyzes medical terminology
-↓
-Simplified explanation generated
-↓
-Patient-friendly output displayed in browser
-
+```
+Start
+  ↓
+User Uploads Medical Report (Image)
+  ↓
+OCR Module Extracts Text (Extractor)
+  ↓
+Text Cleaning & Data Processing
+  ↓
+AI Analysis using Ollama (LLM)
+  ↓
+Risk Prediction Module
+  ↓
++-----------------------------+
+| Additional Functionalities  |
+|                             |
+| → Chatbot Interaction       |
+| → Language Translation      |
+| → Text-to-Speech Output     |
++-----------------------------+
+  ↓
+Display Results on Web Interface
+  ↓
+End
+```
 # 3️⃣ Project Structure
 
 ```
-GROQ_PRO/
+medical-document-ai/
 │
-├── static/
-│   └── style.css
+├── app.py                     # Main Flask application (entry point)
 │
-├── templates/
-│   └── index.html
+├── templates/                # HTML frontend pages
+│   ├── index.html            # Upload interface
+│   └── result.html           # Output display page
 │
-├── uploads/
+├── static/                   # Static assets (CSS, JS)
+│   ├── style.css             # Styling
+│   └── script.js             # Frontend logic
 │
-├── app.py                
-├── extract_text.py      
-├── groq_utils.py        
-├── requirements.txt
-└── .env
+├── utils/                    # Core backend modules
+│   ├── extractor.py          # OCR & text extraction
+│   ├── llm.py                # Ollama LLM integration
+│   ├── risk.py               # Risk prediction logic
+│   ├── chatbot.py            # Chatbot interaction
+│   ├── translate.py          # Language translation
+│   └── tts.py                # Text-to-Speech
+│
+├── uploads/                  # Uploaded medical reports
+│   └── (images/files)
+│
+├── report.txt                # Sample processed report/output
+├── .env                      # Environment variables (API/config)
+└── requirements.txt          # Project dependencies
 ```
 
 ---
@@ -119,11 +147,14 @@ python app.py
 
 ```bash 
 pip install flask
-pip install groq
-pip install python-dotenv
 pip install easyocr
+pip install opencv-python
 pip install pillow
-pip install pymupdf
+pip install numpy
+pip install python-dotenv
+pip install requests
+pip install pyttsx3
+pip install googletrans==4.0.0-rc1
 
 ```
 
@@ -131,21 +162,26 @@ pip install pymupdf
 
 # 8️⃣ Tech Stack
 
-• Python 3.9+     
-• Flask     
-• Groq LLM API     
-• EasyOCR     
-• HTML / CSS     
-• dotenv     
-• pymupdf
+- Python 3.9+  
+- Flask  
+- Ollama (Local LLM)  
+- EasyOCR  
+- OpenCV  
+- HTML / CSS / JavaScript  
+- python-dotenv  
+- requests  
+- pyttsx3  
+- googletrans  
 
 ---
 
 # 9️⃣ Conclusion
 
-Groq-Based Medical Report Simplification demonstrates how large language models can enhance healthcare accessibility by translating complex medical data into understandable language.
+This project demonstrates the effective use of AI and OCR technologies to simplify and analyze medical reports. By integrating text extraction, data processing, and local AI models using Ollama, the system provides clear, patient-friendly explanations and meaningful health insights.
 
-By combining OCR, structured extraction, and Groq-powered AI analysis, the system acts as a digital healthcare assistant that improves clarity, reduces confusion, and enhances patient awareness.
+The inclusion of features such as risk prediction, chatbot interaction, language translation, and text-to-speech enhances usability and accessibility, making medical information easier to understand for users without technical or medical expertise.
+
+Additionally, the use of locally running LLMs ensures data privacy and reduces dependency on external APIs, making the system more secure and scalable. Overall, this project serves as a practical solution for improving healthcare accessibility through intelligent automation.
 
 ---
 
