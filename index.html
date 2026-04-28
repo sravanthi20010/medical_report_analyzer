@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedScan AI — Document Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="index-body">
+
+  <div class="scan-lines"></div>
+  <div class="grid-bg"></div>
+
+  <header class="site-header">
+    <div class="logo-wrap">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect x="1" y="1" width="26" height="26" rx="4" stroke="#00E5C8" stroke-width="1.5"/>
+          <path d="M7 14h4l2-5 3 10 2-7 2 4h1" stroke="#00E5C8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">MEDSCAN<span class="logo-ai">AI</span></span>
+    </div>
+    <div class="header-right">
+      <div class="header-status">
+        <span class="status-dot"></span>
+        <span class="status-label">SYSTEM ONLINE</span>
+      </div>
+      <button class="chat-assist-btn" id="chatBtn" onclick="toggleChat()">
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M2 2h11a1 1 0 011 1v7a1 1 0 01-1 1H5l-3 3V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="5.5" cy="6" r="0.8" fill="currentColor"/>
+          <circle cx="7.5" cy="6" r="0.8" fill="currentColor"/>
+          <circle cx="9.5" cy="6" r="0.8" fill="currentColor"/>
+        </svg>
+        <span>Ask Assistant</span>
+        <span class="chat-badge">AI</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Chat Drawer -->
+  <div class="chat-drawer" id="chatDrawer">
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-avatar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="1" width="14" height="14" rx="3" stroke="#00E5C8" stroke-width="1.2"/><path d="M4 8h2l1-2.5 1.5 5 1-3.5 1 2h1" stroke="#00E5C8" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="chat-name">MedScan Assistant</div>
+          <div class="chat-online"><span class="status-dot" style="width:5px;height:5px;"></span> Online</div>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        <div class="msg-bubble">👋 Hi! I'm your MedScan assistant. Ask me anything about your medical report or how to use this tool.</div>
+        <div class="msg-time">just now</div>
+      </div>
+    </div>
+    <div class="chat-suggestions">
+      <button class="suggestion-chip" onclick="sendSuggestion('What file formats do you support?')">What formats are supported?</button>
+      <button class="suggestion-chip" onclick="sendSuggestion('How does risk detection work?')">How does risk detection work?</button>
+      <button class="suggestion-chip" onclick="sendSuggestion('Can I get results in Telugu?')">Results in Telugu?</button>
+    </div>
+    <div class="chat-input-wrap">
+      <input type="text" class="chat-input" id="chatInput" placeholder="Ask about your report..." onkeydown="if(event.key==='Enter') sendMsg()">
+      <button class="chat-send" onclick="sendMsg()">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M12 7L2 2l2.5 5L2 12z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="chat-overlay" id="chatOverlay" onclick="toggleChat()"></div>
+
+  <main class="upload-main">
+    <div class="hero-section">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-line"></span>
+        INTELLIGENT DOCUMENT ANALYSIS
+        <span class="eyebrow-line"></span>
+      </div>
+      <h1 class="hero-title">
+        Medical Records,<br>
+        <span class="hero-accent">Decoded.</span>
+      </h1>
+      <p class="hero-sub">Upload any lab report or medical document. Get instant AI-powered insights in your language.</p>
+    </div>
+
+    <div class="upload-panel">
+     
+     
+
+      <form action="/" method="POST" enctype="multipart/form-data" id="uploadForm">
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <path d="M20 28V12M20 12L13 19M20 12L27 19" stroke="#00E5C8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="6" y="30" width="28" height="2" rx="1" fill="#00E5C8" opacity="0.3"/>
+            </svg>
+          </div>
+          <div class="drop-text">Drop your document here</div>
+          <div class="drop-subtext">PDF, JPG, PNG, TIFF &mdash; or <label for="fileInput" class="browse-link">browse files</label></div>
+          <input type="file" id="fileInput" name="file" accept=".pdf,.jpg,.jpeg,.png,.tiff" required>
+          <div class="file-selected" id="fileSelected" style="display:none;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7l4 4 6-6" stroke="#00E5C8" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span id="fileName"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label class="field-label">OUTPUT LANGUAGE</label>
+            <div class="select-wrap">
+              <select name="language">
+                <option value="en">English</option>
+                <option value="te">Telugu — తెలుగు</option>
+                <option value="hi">Hindi — हिन्दी</option>
+                <option value="ta">Tamil — தமிழ்</option>
+                <option value="kn">Kannada — ಕನ್ನಡ</option>
+                <option value="ml">Malayalam — മലയാളം</option>
+                <option value="bn">Bengali — বাংলা</option>
+                <option value="mr">Marathi — मराठी</option>
+                <option value="gu">Gujarati — ગુજરાતી</option>
+                <option value="pa">Punjabi — ਪੰਜਾਬੀ</option>
+              </select>
+              <svg class="select-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="analyze-btn" id="analyzeBtn">
+          <span class="btn-inner">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Analyze Document
+          </span>
+          <span class="btn-loading" style="display:none;">
+            <span class="spinner"></span>
+            Processing...
+          </span>
+        </button>
+      </form>
+    </div>
+
+    <div class="feature-row">
+      <div class="feature-chip">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1l1.3 3.2L11 5 8.7 7.3l.5 3.2L6.5 9l-2.7 1.5.5-3.2L2 5l3.2-.8z" stroke="#00E5C8" stroke-width="1"/></svg>
+        AI-Powered
+      </div>
+      <div class="feature-chip">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="#00E5C8" stroke-width="1"/><path d="M6.5 4v2.5l1.5 1.5" stroke="#00E5C8" stroke-width="1" stroke-linecap="round"/></svg>
+        Instant Results
+      </div>
+      <div class="feature-chip">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><rect x="1.5" y="1.5" width="10" height="10" rx="2" stroke="#00E5C8" stroke-width="1"/><path d="M4 6.5l2 2 3-3" stroke="#00E5C8" stroke-width="1" stroke-linecap="round"/></svg>
+        10+ Languages
+      </div>
+      <div class="feature-chip">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 2C4.0 2 2 4 2 6.5S4 11 6.5 11 11 9 11 6.5 9 2 6.5 2z" stroke="#00E5C8" stroke-width="1"/><path d="M6.5 5v2l1 1" stroke="#00E5C8" stroke-width="1" stroke-linecap="round"/></svg>
+        Risk Detection
+      </div>
+    </div>
+  </main>
+
+  <div class="corner-dec tl"></div>
+  <div class="corner-dec br"></div>
+
+<script>
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const fileSelected = document.getElementById('fileSelected');
+  const fileName = document.getElementById('fileName');
+  const form = document.getElementById('uploadForm');
+  const analyzeBtn = document.getElementById('analyzeBtn');
+
+  fileInput.addEventListener('change', e => {
+    if (e.target.files[0]) {
+      fileName.textContent = e.target.files[0].name;
+      fileSelected.style.display = 'flex';
+      dropZone.classList.add('has-file');
+    }
+  });
+
+  ['dragenter', 'dragover'].forEach(ev => {
+    dropZone.addEventListener(ev, e => { e.preventDefault(); dropZone.classList.add('dragging'); });
+  });
+  ['dragleave', 'drop'].forEach(ev => {
+    dropZone.addEventListener(ev, e => { e.preventDefault(); dropZone.classList.remove('dragging'); });
+  });
+  dropZone.addEventListener('drop', e => {
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      fileInput.files = e.dataTransfer.files;
+      fileName.textContent = file.name;
+      fileSelected.style.display = 'flex';
+      dropZone.classList.add('has-file');
+    }
+  });
+
+  form.addEventListener('submit', () => {
+    analyzeBtn.querySelector('.btn-inner').style.display = 'none';
+    analyzeBtn.querySelector('.btn-loading').style.display = 'flex';
+    analyzeBtn.disabled = true;
+  });
+</script>
+
+
+<script>
+function toggleChat() {
+  const drawer = document.getElementById('chatDrawer');
+  const overlay = document.getElementById('chatOverlay');
+  drawer.classList.toggle('open');
+  overlay.classList.toggle('open');
+  if (drawer.classList.contains('open')) document.getElementById('chatInput').focus();
+}
+
+function appendMsg(text, role) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + role;
+  div.innerHTML = '<div class="msg-bubble">'+text+'</div><div class="msg-time">just now</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+async function sendMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  appendMsg(text, 'user');
+  input.value = '';
+
+  try {
+    console.log("Sending:", text);
+
+    const res = await fetch('http://127.0.0.1:5000/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ message: text })
+    });
+
+    console.log("Response status:", res.status);
+
+    const data = await res.json();
+
+    console.log("AI Response:", data);
+
+    appendMsg(data.reply, 'bot');
+
+  } catch (err) {
+    console.error("ERROR:", err);
+    appendMsg("⚠️ AI server not responding", 'bot');
+  }
+}
+
+function sendSuggestion(text) {
+  document.getElementById('chatInput').value = text;
+  sendMsg();
+}
+</script>
+
+
+</body>
+</html>
+
+
